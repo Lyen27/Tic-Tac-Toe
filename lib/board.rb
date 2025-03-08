@@ -1,9 +1,19 @@
+
 class Board
-  
-  def self.render(game_state)
+  @@game_state = Array.new(9, "")
+  def self.pass_state
+    @@game_state
+  end
+
+  def self.coordinate_to_index(coordinate)
+    converter = %w[1,1 1,2 1,3 2,1 2,2 2,3 3,1 3,2 3,3]
+    converter.index(coordinate)
+  end
+
+  def self.render
     grid_generator = '|_1_|'
     line = ''
-    game_state.each_with_index do |state, index|
+    self.pass_state.each_with_index do |state, index|
       if state != ''
         line += grid_generator.sub(/1/, state)
       else
@@ -17,5 +27,4 @@ class Board
   end
 end
 
-Board.render(['O','O','X','O','X','O','O','O','X'])
 
