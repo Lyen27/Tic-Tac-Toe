@@ -1,7 +1,8 @@
 require_relative 'board'
 
 class Player
-  attr_reader :choice
+  attr_reader :choice, :name
+  attr_accessor :score
   def initialize(name,choice)
     @name = name
     @choice = choice
@@ -11,10 +12,6 @@ class Player
   def play(coordinates)
     Board.pass_state[Board.coordinate_to_index(coordinates)] = choice #update state of the board
   end
-
 end
 
-player = Player.new('vin','X')
-player.play('1,3')
-player.play('1,1')
-Board.render
+
