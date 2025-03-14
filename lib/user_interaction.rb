@@ -8,8 +8,7 @@ module UserInteraction
 
   def get_user_choice
     puts 'choose between X and O'
-    choice = check_for_choice(gets.chomp)
-    choice
+    check_for_choice(gets.chomp)
   end
 
   def check_for_choice(choice)
@@ -31,7 +30,15 @@ module UserInteraction
 
   def get_move
     puts 'play a move as in 1,1, the first being the row and the second the column'
-    gets.chomp
+    check_move(gets.chomp)
+  end
+
+  def check_move(move)
+    while !Board.converter.include?(move)
+      puts 'invalid move, try again'
+      move = gets.chomp
+    end
+    move
   end
   
   def get_rounds

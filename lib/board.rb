@@ -1,8 +1,13 @@
 
 class Board
   @@game_state = Array.new(9, "")
+  @@converter = %w[1,1 1,2 1,3 2,1 2,2 2,3 3,1 3,2 3,3]
   def self.pass_state
     @@game_state
+  end
+
+  def self.converter
+    @@converter
   end
 
   def self.change_state=(state)
