@@ -1,6 +1,5 @@
-
 class Board
-  @@game_state = Array.new(9, "")
+  @@game_state = Array.new(9, '')
   @@converter = %w[1,1 1,2 1,3 2,1 2,2 2,3 3,1 3,2 3,3]
   def self.pass_state
     @@game_state
@@ -22,19 +21,16 @@ class Board
   def self.render
     grid_generator = '|_1_|'
     line = ''
-      pass_state.each_with_index do |state, index|
-      if state != ''
-        line += grid_generator.sub(/1/, state)
-      else
-        line += grid_generator.sub(/1/, '_')
-      end
+    pass_state.each_with_index do |state, index|
+      line += if state == ''
+                grid_generator.sub('1', '_')
+              else
+                grid_generator.sub('1', state)
+              end
       if (index + 1) % 3 == 0
         puts line
-        line = '' 
+        line = ''
       end
     end
   end
-
 end
-
-

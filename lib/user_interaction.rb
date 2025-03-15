@@ -1,6 +1,4 @@
-
 module UserInteraction
-  
   def get_user_name
     puts 'tell me your name'
     gets.chomp
@@ -20,35 +18,42 @@ module UserInteraction
   end
 
   def player2_choice
-    case player_1.choice
-      when 'X'
-        'O'
-      when 'O'
-        'X'
+    case player1.choice
+    when 'X'
+      'O'
+    when 'O'
+      'X'
     end
   end
 
   def get_move
     puts 'play a move as in 1,1, the first being the row and the second the column'
-    check_move(gets.chomp)
+    check_square(check_move(gets.chomp))
+  end
+
+  def check_square(square)
+    while Board.pass_state[Board.coordinate_to_index(square)] != ''
+      puts 'this square is already taken, try another one'
+      square = gets.chomp
+    end
+    square
   end
 
   def check_move(move)
-    while !Board.converter.include?(move)
+    until Board.converter.include?(move)
       puts 'invalid move, try again'
       move = gets.chomp
     end
     move
   end
-  
+
   def get_rounds
     puts 'how many rounds do you want to play?'
     gets.chomp.to_i
   end
 
   def show_score
-    puts "#{player_1.name}: #{player_1.score}"
-    puts "#{player_2.name}: #{player_2.score}"
-  end 
-
+    puts "#{player1.name}: #{player1.score}"
+    puts "#{player2.name}: #{player2.score}"
+  end
 end
