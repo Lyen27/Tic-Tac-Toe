@@ -51,7 +51,7 @@ class Game
 
     return 1 if first_diagonal.all?('X') || first_diagonal.all?('O')
 
-    return 1 if second_diagonal.all?('X') || first_diagonal.all?('O')
+    return 1 if second_diagonal.all?('X') || second_diagonal.all?('O')
   end
 
   def check_result
